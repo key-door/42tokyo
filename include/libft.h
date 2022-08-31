@@ -6,7 +6,7 @@
 /*   By: kyoda <kyoda@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 21:01:57 by kyoda             #+#    #+#             */
-/*   Updated: 2022/08/30 00:25:32 by kyoda            ###   ########.fr       */
+/*   Updated: 2022/08/31 18:37:36 by kyoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
 
 typedef struct s_list
 {
