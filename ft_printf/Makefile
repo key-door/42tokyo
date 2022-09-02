@@ -6,27 +6,59 @@
 #    By: kyoda <kyoda@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/31 17:20:52 by kyoda             #+#    #+#              #
-#    Updated: 2022/09/01 12:41:51 by kyoda            ###   ########.fr        #
+#    Updated: 2022/09/03 02:54:55 by kyoda            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= printf.a
-SRC			= 
-OBJS		= $(SRC:.c=.o)
-CC 			= gcc
-CFLAGS		= -Wall -Wextra -Werror -I libft.h
+NAME = libftprintf.a
 
-all : $(NAME)
+LIBFTDIR = ./libft
 
-$(NAME) : $(OBJS)
-	ar rcs $(NAME) $^
+SRCS = ft_printf.c
 
-clean :
-	$(RM) $(OBJS)
+OBJS = $(SRCS:.c=.o)
 
-fclean : clean
-	$(RM) $(NAME)
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+INCLUDES = -I ../include/libft.h
 
-re : fclean all
+all: $(NAME)
 
-.PHONY : all clean fclean re
+$(NAME): $(OBJS)
+	make -C $(LIBFTDIR)
+	cp libft/libft.a $(NAME)
+	ar rcs $(NAME) $(OBJS)
+
+
+clean:
+	make clean -C $(LIBFTDIR)
+	rm -f $(OBJS)
+
+fclean: clean
+	make fclean -C $(LIBFTDIR)
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re bonus
+
+# NAME		= printf.a
+# SRC			= ft_printf.c
+# OBJS		= $(SRC:.c=.o)
+# CC 			= gcc
+# CFLAGS		= -Wall -Wextra -Werror -I ../include/ft_printf.h
+
+# all : $(NAME)
+
+# $(NAME) : $(OBJS)
+# 	ar rcs $(NAME) $^
+
+# clean :
+# 	$(RM) $(OBJS)
+
+# fclean : clean
+# 	$(RM) $(NAME)
+
+# re : fclean all
+
+# .PHONY : all clean fclean re
