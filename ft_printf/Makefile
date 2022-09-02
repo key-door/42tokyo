@@ -6,7 +6,7 @@
 #    By: kyoda <kyoda@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/31 17:20:52 by kyoda             #+#    #+#              #
-#    Updated: 2022/09/03 02:54:55 by kyoda            ###   ########.fr        #
+#    Updated: 2022/09/03 05:20:05 by kyoda            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 LIBFTDIR = ./libft
 
-SRCS = ft_printf.c
+SRCS = ft_printf.c ft_pri_str.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -42,18 +42,29 @@ re: fclean all
 
 .PHONY: all clean fclean re bonus
 
-# NAME		= printf.a
-# SRC			= ft_printf.c
+# NAME = libftprintf.a
+
+# LIBFTDIR = ./libft
+
+# INCLUDEDIR = include/ft_printf.h
+
+# SRC = ft_printf.c ft_pri_str.c
+
 # OBJS		= $(SRC:.c=.o)
-# CC 			= gcc
-# CFLAGS		= -Wall -Wextra -Werror -I ../include/ft_printf.h
+
+# CC 			= cc
+
+# CFLAGS		= -Wall -Wextra -Werror -I $(INCLUDEDIR)
 
 # all : $(NAME)
 
 # $(NAME) : $(OBJS)
+# 	all -C $(LIBFTDIR)
+# 	cp libft/libft.a $(NAME)
 # 	ar rcs $(NAME) $^
 
 # clean :
+# 	clean -C $(LIBFTDIR)
 # 	$(RM) $(OBJS)
 
 # fclean : clean
