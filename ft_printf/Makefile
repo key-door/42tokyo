@@ -6,7 +6,7 @@
 #    By: kyoda <kyoda@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/31 17:20:52 by kyoda             #+#    #+#              #
-#    Updated: 2022/09/03 05:20:05 by kyoda            ###   ########.fr        #
+#    Updated: 2022/09/03 05:31:46 by kyoda            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,62 +14,31 @@ NAME = libftprintf.a
 
 LIBFTDIR = ./libft
 
-SRCS = ft_printf.c ft_pri_str.c
+INCLUDEDIR = include/ft_printf.h
 
-OBJS = $(SRCS:.c=.o)
+SRC = ft_printf.c ft_pri_str.c
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -I ../include/libft.h
+OBJS		= $(SRC:.c=.o)
 
-all: $(NAME)
+CC 			= cc
 
-$(NAME): $(OBJS)
-	make -C $(LIBFTDIR)
+CFLAGS		= -Wall -Wextra -Werror -I $(INCLUDEDIR)
+
+all : $(NAME)
+
+$(NAME) : $(OBJS)
+	make bonus -C $(LIBFTDIR)
 	cp libft/libft.a $(NAME)
-	ar rcs $(NAME) $(OBJS)
+	ar rcs $(NAME) $^
 
-
-clean:
+clean :
 	make clean -C $(LIBFTDIR)
 	rm -f $(OBJS)
 
-fclean: clean
+fclean : clean
 	make fclean -C $(LIBFTDIR)
 	rm -f $(NAME)
 
-re: fclean all
+re : fclean all
 
-.PHONY: all clean fclean re bonus
-
-# NAME = libftprintf.a
-
-# LIBFTDIR = ./libft
-
-# INCLUDEDIR = include/ft_printf.h
-
-# SRC = ft_printf.c ft_pri_str.c
-
-# OBJS		= $(SRC:.c=.o)
-
-# CC 			= cc
-
-# CFLAGS		= -Wall -Wextra -Werror -I $(INCLUDEDIR)
-
-# all : $(NAME)
-
-# $(NAME) : $(OBJS)
-# 	all -C $(LIBFTDIR)
-# 	cp libft/libft.a $(NAME)
-# 	ar rcs $(NAME) $^
-
-# clean :
-# 	clean -C $(LIBFTDIR)
-# 	$(RM) $(OBJS)
-
-# fclean : clean
-# 	$(RM) $(NAME)
-
-# re : fclean all
-
-# .PHONY : all clean fclean re
+.PHONY : all clean fclean re
