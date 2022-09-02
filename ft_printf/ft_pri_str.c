@@ -6,13 +6,13 @@
 /*   By: kyoda <kyoda@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 04:39:11 by kyoda             #+#    #+#             */
-/*   Updated: 2022/09/03 05:10:43 by kyoda            ###   ########.fr       */
+/*   Updated: 2022/09/03 06:23:52 by kyoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/ft_printf.h"
 
-char	*ft_itoarray(unsigned long n, char *str, long base, int flagx)
+char	*ft_itoarray(unsigned long n, char *str, unsigned long base, int flagx)
 {
 	int	i;
 
