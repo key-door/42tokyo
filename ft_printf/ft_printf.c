@@ -6,7 +6,7 @@
 /*   By: kyoda <kyoda@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:20:52 by kyoda             #+#    #+#             */
-/*   Updated: 2022/09/03 02:46:59 by kyoda            ###   ########.fr       */
+/*   Updated: 2022/09/03 03:17:04 by kyoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int	ft_itoa_u_int(long n)
 	int		flag;
 
 	flag = 0;
+	if (n == 0)
+	{
+		ft_putchar_fd('0', 1);
+		return (1);
+	}
 	if (n < 0)
 	{
 		flag = 1;
@@ -28,7 +33,6 @@ int	ft_itoa_u_int(long n)
 	i = 11;
 	if ((str = ft_calloc(12, 1)) == NULL)
 		return (-1);
-	str[i - 1] = 0;
 	while (n)
 	{
 		str[--i] = n % 10 + '0';
@@ -49,9 +53,13 @@ int	ft_itoa_six_base(unsigned int n, int flag)
 	int		len;
 
 	i = 10;
+	if (n == 0)
+	{
+		ft_putchar_fd('0', 1);
+		return (1);
+	}
 	if ((str = ft_calloc(11, 1)) == NULL)
 		return (-1);
-	str[i - 1] = 0;
 	while (n)
 	{
 		if (n % 16 < 10)
@@ -81,15 +89,19 @@ int	ft_putptr(va_list ap)
 	i = 10;
 	if ((str = ft_calloc(11, 1)) == NULL)
 		return (-1);
-	str[i - 1] = 0;
-	while (n)
+	if (n != 0)
 	{
-		if (n % 16 < 10)
-			str[--i] = n % 16 + '0';
-		else
-			str[--i] = ft_tolower(n % 16 + '7');
-		n /= 16;
+		while (n)
+		{
+			if (n % 16 < 10)
+				str[--i] = n % 16 + '0';
+			else
+				str[--i] = ft_tolower(n % 16 + '7');
+			n /= 16;
+		}
 	}
+	else
+		str[--i] = '0';
 	str[--i] = 'x';
 	str[--i] = '0';
 	ft_putstr_fd(&str[i], 1);
@@ -109,6 +121,11 @@ static int	selection_percent(va_list ap, const char *format)
 	else if (*format == 's')
 	{
 		p = va_arg(ap, char *);
+		if (p == NULL)
+		{
+			ft_putstr_fd("(null)", 1);
+			return 6;
+		}
 		ft_putstr_fd(p, 1);
 		return (ft_strlen(p));
 	}
@@ -164,9 +181,8 @@ int	ft_printf(const char *format, ...)
 
 // int	main(void)
 // {
-// 	ft_printf(" %s %s %s %s %s ", " - ", "", "4", "", "2 ");
-// 	printf("\n");
-// 	printf(" %s %s %s %s %s ", " - ", "", "4", "", "2 ");
-
+// 	ft_printf(" NULL %s NULL ", NULL);
+// 	ft_printf("\n");
+// 	printf(" NULL %s NULL ", NULL);
 // 	return (0);
 // }
