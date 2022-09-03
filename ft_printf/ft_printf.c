@@ -6,35 +6,35 @@
 /*   By: kyoda <kyoda@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:20:52 by kyoda             #+#    #+#             */
-/*   Updated: 2022/09/03 06:16:38 by kyoda            ###   ########.fr       */
+/*   Updated: 2022/09/03 10:58:16 by kyoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/ft_printf.h"
 
-static int	selection_percent(va_list ap, const char *format)
+static int	selection_percent(va_list *ap, const char *format)
 {
 	int	len;
 
-	len = 1;
+	len = 0;
 	if (*format == 'c')
-		ft_putchar_fd((char)va_arg(ap, int), 1);
+		len += ft_putchr((int)va_arg(*ap, int));
 	else if (*format == 's')
-		return (ft_str_print(ap));
+		len = ft_putstr((char *)va_arg(*ap, char *));
 	else if (*format == 'p')
-		return (ft_putptr(ap));
+		len += ft_put_ptr((uintptr_t)va_arg(*ap, uintptr_t));
 	else if (*format == 'd')
-		return (ft_itoa_u_int(va_arg(ap, int)));
+		len += ft_putnbr((int)va_arg(*ap, int));
 	else if (*format == 'i')
-		return (ft_itoa_u_int(va_arg(ap, int)));
+		len += ft_putnbr((int)va_arg(*ap, int));
 	else if (*format == 'u')
-		return (ft_itoa_u_int(va_arg(ap, unsigned int)));
+		len += ft_putnbr_ui((unsigned int)va_arg(*ap, unsigned int));
 	else if (*format == 'x')
-		return (ft_itoa_six_base(va_arg(ap, unsigned int), 1));
+		len += ft_puthex(((unsigned long)va_arg(*ap, unsigned long)), 0);
 	else if (*format == 'X')
-		return (ft_itoa_six_base(va_arg(ap, unsigned int), 2));
+		len += ft_puthex(((unsigned long)va_arg(*ap, unsigned long)), 1);
 	else if (*format == '%')
-		ft_putchar_fd('%', 1);
+		len += ft_putchr('%');
 	return (len);
 }
 
@@ -50,7 +50,7 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			check = selection_percent(ap, ++format);
+			check = selection_percent(&ap, ++format);
 			if (check == -1)
 				return (0);
 			else

@@ -6,7 +6,7 @@
 #    By: kyoda <kyoda@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/31 17:20:52 by kyoda             #+#    #+#              #
-#    Updated: 2022/09/03 05:31:46 by kyoda            ###   ########.fr        #
+#    Updated: 2022/09/03 10:26:20 by kyoda            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFTDIR = ./libft
 
 INCLUDEDIR = include/ft_printf.h
 
-SRC = ft_printf.c ft_pri_str.c
+SRC = ft_printf.c ft_putstr.c ft_puthex.c ft_putnbr.c   ft_putptr.c   ft_putchr.c  ft_putnbr_u.c   
 
 OBJS		= $(SRC:.c=.o)
 

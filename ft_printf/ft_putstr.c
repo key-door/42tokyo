@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoda <kyoda@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 18:13:28 by kyoda             #+#    #+#             */
-/*   Updated: 2022/09/03 11:11:07 by kyoda            ###   ########.fr       */
+/*   Created: 2022/09/03 09:19:46 by kyoda             #+#    #+#             */
+/*   Updated: 2022/09/03 11:29:36 by kyoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "include/ft_printf.h"
 
-# include "libft.h"
-# include <inttypes.h>
-# include <stdarg.h>
-
-int	ft_printf(const char *format, ...);
-int	ft_putchr(int c);
-int	ft_puthex(unsigned int n, int flag);
-int	ft_putnbr(int n);
-int	ft_put_ptr(uintptr_t ptr);
-int	ft_putstr(char *p);
-int	ft_putnbr_ui(unsigned int n);
-
-#endif
+int	ft_putstr(char *p)
+{
+	if (p == NULL)
+		return (write(1, "(null)", 6));
+	ft_putstr_fd(p, 1);
+	return (int)ft_strlen(p);
+}

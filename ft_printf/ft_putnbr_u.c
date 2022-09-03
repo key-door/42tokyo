@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyoda <kyoda@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 18:13:28 by kyoda             #+#    #+#             */
-/*   Updated: 2022/09/03 11:11:07 by kyoda            ###   ########.fr       */
+/*   Created: 2022/09/03 10:23:50 by kyoda             #+#    #+#             */
+/*   Updated: 2022/09/03 10:27:53 by kyoda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "include/ft_printf.h"
 
-# include "libft.h"
-# include <inttypes.h>
-# include <stdarg.h>
+static int	put(unsigned int n, int len)
+{
+	char	ans;
 
-int	ft_printf(const char *format, ...);
-int	ft_putchr(int c);
-int	ft_puthex(unsigned int n, int flag);
-int	ft_putnbr(int n);
-int	ft_put_ptr(uintptr_t ptr);
-int	ft_putstr(char *p);
-int	ft_putnbr_ui(unsigned int n);
+	if (n >= 10)
+	{
+		len = put(n / 10, len);
+		len = put(n % 10, len);
+	}
+	else
+	{
+		ans = n + '0';
+		len += write(1, &ans, 1);
+	}
+	return (len);
+}
 
-#endif
+int	ft_putnbr_ui(unsigned int n)
+{
+	int	len;
+
+	len = 0;
+	if (n== 0)
+        return write(1,"0",1);
+	len += put(n, len);
+	return (len);
+}
