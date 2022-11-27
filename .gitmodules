@@ -1,0 +1,18 @@
+[submodule "ft_printf"]
+	path = ft_printf
+	url = https://github.com/key-door/ft_printf
+[submodule "get_next_line"]
+	path = get_next_line
+	url = https://github.com/key-door/get_next_line
+[submodule "libft"]
+	path = libft
+	url = https://github.com/key-door/libft
+[submodule "minitalk"]
+	path = minitalk
+	url = https://github.com/key-door/minitalk
+[submodule "push_swap"]
+	path = push_swap
+	url = https://github.com/key-door/push_swap
+[submodule "Born2beRoot"]
+	path = Born2beRoot
+	url = https://github.com/key-door/Born2beRoot
